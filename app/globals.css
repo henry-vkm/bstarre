@@ -1,26 +1,557 @@
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap");
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --navy: #071039;
+  --blue: #23347a;
+  --cream: #f8f4ef;
+  --red: #c94732;
+  --brown: #5a351a;
+  --text: #10183b;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+}
+
+/* NAV */
+
+.nav {
+  height: 72px;
+  padding: 0 70px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.navLinks {
+  display: flex;
+  gap: 34px;
+  font-size: 13px;
+}
+
+.navBtn {
+  background: var(--navy);
+  color: white;
+  padding: 18px 32px;
+}
+
+/* HERO */
+
+.hero {
+  position: relative;
+  min-height: 720px;
+  margin: 0 auto;
+  background-image: url("https://images.squarespace-cdn.com/content/v1/53d38ed4e4b0dc5a2065c4b9/1516155400863-4HMTXEOFN7T2YDECGRGL/052_B_Star102615_proofs-compressor.jpg?format=2500w");
+  background-size: cover;
+  background-position: center;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(5, 12, 55, 0.82),
+    rgba(5, 12, 55, 0.25)
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  padding: 210px 70px;
+  color: white;
+}
+
+.heroContent h1 {
+  font-size: 72px;
+  line-height: 0.95;
+  margin-bottom: 28px;
+}
+
+.heroContent p {
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+.eyebrow {
+  display: none;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  margin-bottom: 12px;
+}
+
+.heroBtns {
+  display: flex;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.heroBtns button {
+  background: #0647d9;
+  color: white;
+  padding: 20px 34px;
+}
+
+.heroBtns .outline {
+  background: transparent;
+  border: 1px solid white;
+}
+
+/* INTRO */
+
+.intro {
+  padding: 90px 70px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  background: white;
+}
+
+.intro h2 {
+  font-size: 46px;
+  line-height: 1.05;
+  margin-bottom: 28px;
+}
+
+.intro p {
+  max-width: 580px;
+  line-height: 1.7;
+  color: #575b6f;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.stats div {
+  background: #fafafa;
+  padding: 34px;
+  text-align: center;
+  border-left: 5px solid #0647d9;
+}
+
+.stats strong {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 44px;
+  display: block;
+}
+
+.stats span {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 13px;
+}
+
+/* MENU */
+
+.menuSection {
+  padding: 90px 70px 120px;
+}
+
+.sectionTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 42px;
+}
+
+.sectionTop h2 {
+  font-size: 48px;
+}
+
+.sectionTop a {
+  font-size: 13px;
+}
+
+.red {
+  display: block;
+  color: var(--red);
+}
+
+.dishGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+}
+
+.dishCard {
+  position: relative;
+  min-height: 340px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+}
+
+.dishCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+.dishCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.72));
+}
+
+.dishText {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  padding: 28px;
+  color: white;
+}
+
+.dishText h3 {
+  font-size: 30px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.dishText p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.dishTag {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 10px !important;
+  margin-bottom: 10px;
+}
+
+.brownCard {
+  background: var(--brown);
+}
+
+.brownCard::after {
+  display: none;
+}
+
+.brownCard .dishText {
+  inset: 0;
+  color: #f8e7c8;
+}
+
+.dishTitleRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dishTitleRow span {
+  color: var(--red);
+  font-weight: 700;
+}
+
+/* VISIT */
+
+.visit {
+  margin: 0 70px 120px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+.visit img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+}
+
+.visitInfo {
+  background: var(--blue);
+  color: white;
+  padding: 60px;
+}
+
+.visitInfo h2 {
+  font-size: 46px;
+  margin-bottom: 46px;
+}
+
+.infoItem {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 28px;
+  color: #d8dcec;
+  line-height: 1.6;
+}
+
+.infoItem span {
+  color: var(--red);
+}
+
+.visitInfo button {
+  margin-top: 24px;
+  width: 100%;
+  padding: 22px;
+  background: var(--red);
+  color: white;
+  border-radius: 6px;
+}
+
+/* FOOTER */
+
+footer {
+  background: #050b32;
+  color: white;
+  padding: 80px 70px 42px;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 90px;
+  padding-bottom: 70px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+footer h3 {
+  font-size: 28px;
+  margin-bottom: 28px;
+}
+
+footer h4 {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 11px;
+  margin-bottom: 24px;
+  color: #8d94bd;
+}
+
+footer p,
+footer a {
+  display: block;
+  color: #bec4df;
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 10px;
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 12px;
+  color: #737b9f;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  .nav {
+    height: 44px;
+    padding: 0 14px;
+  }
+
+  .nav::before {
+    content: "☰";
+    font-size: 16px;
+    margin-right: 6px;
+  }
+
+  .logo {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .navLinks {
+    display: none;
+  }
+
+  .navBtn {
+    padding: 9px 14px;
+    font-size: 9px;
+  }
+
+  .hero {
+    min-height: 430px;
+    margin: 0 10px;
+    border-radius: 0;
+  }
+
+  .heroOverlay {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.25),
+      rgba(5, 12, 55, 0.82)
+    );
+  }
+
+  .heroContent {
+    padding: 150px 22px 22px;
+  }
+
+  .eyebrow {
+    display: block;
+  }
+
+  .heroContent h1 {
+    font-size: 44px;
+    line-height: 0.9;
+  }
+
+  .heroContent p {
+    display: none;
+  }
+
+  .heroBtns {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .heroBtns button {
+    width: 100%;
+    padding: 14px;
+  }
+
+  .intro {
+    padding: 60px 22px;
+    display: block;
+  }
+
+  .smallLine {
+    width: 46px;
+    height: 2px;
+    background: var(--red);
+    margin-bottom: 24px;
+  }
+
+  .intro h2 {
+    font-size: 34px;
+  }
+
+  .stats {
+    margin-top: 28px;
+    gap: 8px;
+  }
+
+  .stats div {
+    border-left: none;
+    background: transparent;
+    padding: 8px;
+  }
+
+  .stats strong {
+    color: var(--red);
+    font-size: 28px;
+  }
+
+  .stats span {
+    font-size: 9px;
+  }
+
+  .menuSection {
+    padding: 34px 22px 70px;
+  }
+
+  .sectionTop {
+    display: block;
+  }
+
+  .sectionTop h2 {
+    font-size: 36px;
+  }
+
+  .sectionTop a {
+    display: none;
+  }
+
+  .dishGrid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .dishCard {
+    min-height: 260px;
+  }
+
+  .brownCard {
+    min-height: 230px;
+  }
+
+  .dishText h3 {
+    font-size: 28px;
+  }
+
+  .visit {
+    margin: 0 22px 70px;
+    grid-template-columns: 1fr;
+    border-radius: 12px;
+  }
+
+  .visit img {
+    height: 280px;
+  }
+
+  .visitInfo {
+    padding: 34px 28px;
+  }
+
+  .visitInfo h2 {
+    font-size: 36px;
+  }
+
+  footer {
+    padding: 48px 22px 32px;
+  }
+
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 34px;
+  }
+
+  .footerGrid > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .copyright {
+    text-align: left;
+  }
 }
